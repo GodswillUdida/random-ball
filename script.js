@@ -2,8 +2,8 @@
 
 /*
     Project: Random Ball Movement
-    Developed by: [ Udida Godswill, Alaska Blessing]
-    Date: [10-03-2025]
+    Developed by: Udida Godswill, Alaska Blessing
+    Date: 10-03-2025
     Description: This project animates a ball moving randomly within a canvas,
                  bouncing off the edges of the screen.
 */
@@ -28,7 +28,9 @@ function changeBackgroundColor() {
 
 // Function to display developer names in the background
 function displayNames() {
-    ctx.font = "bold 32px Arial";
+    const fontSize = Math.max(16, canvas.width * 0.018); // Scale font size dynamically
+    const lineHeight = fontSize * 1.5; // Adjust line height for better spacing
+    ctx.font = `bold ${fontSize}px Arial`;
     ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
     ctx.textAlign = "center";
     ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
@@ -41,15 +43,17 @@ function displayNames() {
         "COM 113 Project Defense"
     ];
     
+    const startY = canvas.height * 0.15; // Dynamic start position based on screen height
+    
     lines.forEach((text, index) => {
-        ctx.fillText(text, canvas.width / 2, (canvas.height / 6) + index * 50);
+        ctx.fillText(text, canvas.width / 2, startY + index * lineHeight);
     });
 }
 
 // Ball properties with better encapsulation
 class Ball {
     constructor() {
-        this.radius = 20;
+        this.radius = Math.max(15, canvas.width * 0.015); // Scale ball size dynamically
         this.resetPosition();
     }
 
